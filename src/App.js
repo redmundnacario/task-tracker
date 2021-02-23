@@ -1,25 +1,90 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState, useEffect} from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-function App() {
+import Header from './components/header/header.component';
+import AddTaskForm from './components/add-task-form/add-task-form.component';
+import TaskList from './components/tasks-list/task-list.component';
+import Footer from './components/footer/footer.component';
+import About from './components/about/about.component';
+
+
+import './App.css'
+const App = () => {
+  const [showAddTask, setShowAddTask] = useState(false)
+  const [tasks, setTasks] = useState([
+    {
+      id: 0,
+      name : "Do Laundry",
+      day: "Monday",
+      reminder: true
+    },
+    {
+      id:1,
+      name : "Do Grocery",
+      day: "Monday",
+      reminder: true
+    },
+    {
+      id: 2,
+      name : "Do Clean Shoes",
+      day: "Monday",
+      reminder: true
+    }
+  ])
+
+  const addTask = (task) => {
+    console.log(task)
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = {id, ...task}
+    setTasks([...tasks, newTask])
+
+  }
+
+  // Delete Specific task
+  const deleteTask = (id) => {
+    setTasks(
+      tasks.filter(task => task.id !== id)
+    )
+  }
+
+  // Toggle the reminder boolean inside the task object
+  const toggleReminder = (id) => {
+    setTasks(
+      tasks.map(task => {
+        return task.id === id ? {...task, reminder : !task.reminder} : task
+      })
+    )
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <div className="app">
+        <Header
+          onToggle = {() => setShowAddTask(!showAddTask)}
+          showAddTask = {showAddTask}
+        />
+        <Route
+          path = "/"
+          exact
+          render ={ (props) => (
+            <div>
+              {
+                showAddTask && <AddTaskForm onAdd={addTask}/>
+              }
+                
+              <TaskList 
+                tasks={tasks}
+                onToggle={toggleReminder}
+                onDelete={deleteTask}
+              />
+            </div>
+        )}
+        />
+        <Route path="/about" component={About} exact/>
+        <Footer/>
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
