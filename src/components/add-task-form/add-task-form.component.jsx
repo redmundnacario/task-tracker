@@ -45,7 +45,7 @@ const AddTaskForm = ({ onAdd }) => {
                 className=""
                 label="Day"
                 type="text"
-                placeholder="Name sof a Day"
+                placeholder="Name of a Day"
                 value={day}
                 onChange={(event) => setDay(event.target.value)}
             />

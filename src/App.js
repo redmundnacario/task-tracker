@@ -22,13 +22,13 @@ const App = () => {
     {
       id:1,
       name : "Do Grocery",
-      day: "Monday",
+      day: "Tuesday",
       reminder: true
     },
     {
       id: 2,
       name : "Do Clean Shoes",
-      day: "Monday",
+      day: "Wednesday",
       reminder: true
     }
   ])
