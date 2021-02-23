@@ -2,7 +2,7 @@
   "name": "task-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://redmundnacario.github.io/task-tracker",
+  "homepage": "https://redmundnacario.github.io/task-tracker",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,6 +13,7 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "serve": "^11.3.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -20,8 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy" : "yarn build",
-    "deploy" : "gh-pages -d build"
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
+    "server": "serve -s build -l 4000"
   },
   "eslintConfig": {
     "extends": [

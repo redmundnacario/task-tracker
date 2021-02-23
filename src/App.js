@@ -64,8 +64,8 @@ const App = () => {
           showAddTask = {showAddTask}
         />
         <Route
-          path = "/"
-          exact
+          path = "/task-tracker"
+          // exact
           render ={ (props) => (
             <div>
               {
